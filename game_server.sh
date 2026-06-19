@@ -1,30 +1,30 @@
 #!/bin/bash
-# SEED3 Game Server - Fixed ports
+# SEED3 Game Server
+# Run this script to start all game servers
 
-pkill -f "serve.py\|http.server" 2>/dev/null
-sleep 1
+# Kill existing
+pkill -f "http.server" 2>/dev/null
 
 cd /data/data/com.termux/files/home
 
-# NOG Game
+# NOG
 cd /data/data/com.termux/files/home/mortimer/agents/nog/game
-python3 /data/data/com.termux/files/home/serve.py 7770 &
+python3 -m http.server 5001 &
 
 # SGVD
 cd /data/data/com.termux/files/home/Starship/sgvd
-python3 /data/data/com.termux/files/home/serve.py 7771 &
+python3 -m http.server 5002 &
 
 # VERSE
 cd /data/data/com.termux/files/home/Starship/verse
-python3 /data/data/com.termux/files/home/serve.py 7772 &
+python3 -m http.server 5003 &
 
 # STARSHIP
 cd /data/data/com.termux/files/home/Starship
-python3 /data/data/com.termux/files/home/serve.py 7773 &
+python3 -m http.server 5004 &
 
-sleep 2
-echo "✅ SEED3 GAMES RUNNING!"
-echo "  NOG:      http://localhost:7770/"
-echo "  SGVD:     http://localhost:7771/sgvd.html"
-echo "  VERSE:    http://localhost:7772/verse.html"
-echo "  STARSHIP: http://localhost:7773/"
+echo "🎮 SEED3 GAMES:"
+echo "  NOG:      http://127.0.0.1:5001/"
+echo "  SGVD:     http://127.0.0.1:5002/sgvd.html"
+echo "  VERSE:    http://127.0.0.1:5003/verse.html"
+echo "  STARSHIP: http://127.0.0.1:5004/"
