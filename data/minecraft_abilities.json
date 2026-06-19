@@ -1,0 +1,71 @@
+{
+  "minecraft_agents": {
+    "description": "MYL Agents embodied in Minecraft via Mineflayer",
+    "agents": ["mylzeron", "mylonen", "myltwon", "mylthreen", "mylforon", "mylfivon", "mylsixon"],
+    "bridge_ports": {
+      "observer": 8765,
+      "actor": 8766,
+      "mc_server": 25565
+    }
+  },
+  
+  "abilities": {
+    "movement": {
+      "move": { "params": ["dx", "dy", "dz"], "description": "Move relative" },
+      "look": { "params": ["yaw", "pitch"], "description": "Set look direction" },
+      "goto": { "params": ["x", "y", "z", "distance"], "description": "Pathfinder navigation" },
+      "follow": { "params": ["target_entity"], "description": "Follow entity" }
+    },
+    "block_interaction": {
+      "dig": { "params": ["block"], "description": "Mine block" },
+      "place_block": { "params": ["position", "block_type"], "description": "Place block" },
+      "break_block": { "params": ["x", "y", "z"], "description": "Break block" },
+      "use_block": { "params": ["position"], "description": "Right-click block" }
+    },
+    "entity_interaction": {
+      "attack": { "params": ["entity"], "description": "Attack entity" },
+      "interact": { "params": [], "description": "Right-click interaction" },
+      "give": { "params": ["item", "count"], "description": "Give item" }
+    },
+    "chat": {
+      "chat": { "params": ["message"], "description": "Send chat message" }
+    },
+    "inventory": {
+      " unequip": { "description": "Unequip item" },
+      "toss": { "params": ["item", "count"], "description": "Drop item" },
+      "useItem": { "description": "Use held item" }
+    }
+  },
+  
+  "pathfinder_goals": {
+    "GoalNear": { "params": ["x", "y", "z", "range"], "description": "Go near location" },
+    "GoalBlock": { "params": ["x", "y", "z"], "description": "Go to exact block" },
+    "GoalFollow": { "params": ["entity", "distance"], "description": "Follow entity" },
+    "GoalXZ": { "params": ["x", "z", "range"], "description": "Navigate to XZ" }
+  },
+  
+  "martial_arts": {
+    "disciplines": {
+      "taekwondo": {
+        "name": "Tae Kwon Do",
+        "type": "Korean striking art",
+        "focus": "Power, striking, kicking",
+        "movements": 23
+      },
+      "taichi": {
+        "name": "Tai Chi",
+        "type": "Chinese internal art",
+        "focus": "Balance, flow, energy",
+        "movements": 17
+      },
+      "qigong": {
+        "name": "Qi Gong",
+        "type": "Energy cultivation",
+        "focus": "Breathing, vitality, chi",
+        "movements": 19
+      }
+    },
+    "skills": ["power", "balance", "flow", "chi", "energy"],
+    "belts": ["White", "Yellow", "Green", "Blue", "Red", "Red/Black", "Black"]
+  }
+}
