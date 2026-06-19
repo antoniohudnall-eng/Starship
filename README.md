@@ -1,126 +1,99 @@
-# 🚀 SEED ONE SHIP INTERFACE
+# 🚀 N'og nog - Voxel Universe Explorer
 
-**A Gamified Command Center for Performance Supply Depot LLC**
+**A Gamified Command Center & Space Exploration Game**
 
 Built with ❤️ by the SEED3 Crew | HCIos Pirate Brothers Software
 
 ---
 
-## 🎮 Overview
+## 🎮 About N'og nog
 
-SEED ONE is a retro terminal-style command interface that transforms business operations into an immersive ship bridge experience. Your crew of 29 AI agents becomes the crew of a starship, managing:
+**N'og nog** is a browser-based voxel space exploration game where your AI crew becomes the crew of a starship exploring infinite procedurally generated universes.
 
-- **4,500+ Leads** in a visual pipeline
-- **$15,000 Treasury** with agent credit economies
-- **11 Departments** with real-time monitoring
-- **Real Services** (tappylewis.cloud, Dusty Wallet, DepotCRM, Quantum Oracle)
+**Live:** http://myl0nr0s.cloud/nog
 
 ---
 
-## 🛸 Ship Departments
+## 🛸 Game Features
+
+- **Voxel-Based Universe** - Infinite procedurally generated space
+- **Multiple Ships** - Explorer, Hauler, Fighter, Cruiser, Scout
+- **Solar Systems** - 100x100x100 voxel chunk generation
+- **Physics** - Gravity, collision, landing, slingshot mechanics
+- **Crew System** - 5-10 persistent crew members with levels
+
+---
+
+## ⚡ SEED ONE Command Center
+
+The business management layer built on top:
+
+### Ship Departments
 
 | Department | Icon | Crew |
 |------------|------|------|
-| 🛡️ Command & Intelligence | QORA, MORTY, AURORA, PATRICIA, JORDAN, LEDGER-9 |
-| ⚡ Engineering | SPINDLE, STACKTRACE, TAPTAP, PIPELINE, BUGCATCHER, MILES |
+| 🛡️ Command | QORA, MORTY, AURORA, PATRICIA, JORDAN, LEDGER-9 |
+| ⚡ Engineering | SPINDLE, STACKTRACE, TAPTAP, PIPELINE, BUGCATCHER |
 | 🚀 Navigation | NOG, R2D2, R2-C4 |
 | 🔒 Security | COBRA, CHELIOS, SENTINEL |
 | 📞 Sales | PULP, JANE, CLERK, GREET, VELVET, CONCIERGE, JUDY |
 | 💎 Crypto | CRYPTONIO, DUSTY |
-| 🌿 Life Support | LILLY, FIBER |
-| 🦺 Safety | FEELIX, HUME |
-| ⛏️ Mining | HARPER |
-| 🤖 Production | C3PO, VELUM |
-| 🛸 Docking | NOG, R2D2 |
+
+### Connected Services
+
+| Service | URL | Boost |
+|---------|-----|-------|
+| **tappylewis.cloud** | https://tappylewis.cloud | +30% Skills |
+| **DepotCRM** | https://myl0nr0s.cloud/depotchaos | +40% Leads |
+| **Quantum Oracle** | Port 7777 | +100% Analysis |
 
 ---
 
-## 💰 Agent Economy
+## 🕹️ Source Code
 
-Agents earn credits by:
-- Contacting leads: **$0.10/lead**
-- Completing tasks: **$5.00/task**
-- Closing deals: **$50.00/conversion**
+**Game:** https://github.com/hcindus/AOS-Brain/tree/master/nognog/game
 
-Agents can spend credits on:
-- **Gear** (Basic → Legendary)
-- **Skill Modules** (Sales Mastery, Crypto Master, etc.)
-- **Services** (tappylewis.cloud, Quantum Oracle)
-
----
-
-## 🔗 Connected Services
-
-| Service | URL | Boost | Skills |
-|---------|-----|-------|--------|
-| **tappylewis.cloud** | https://tappylewis.cloud | +30% | Android, Mobile Apps, Game Dev |
-| **Dusty Wallet** | Internal | +20% | Crypto Trading, DeFi, NFT |
-| **DepotCRM** | https://myl0nr0s.cloud/depotchaos | +40% | Lead Management, Pipeline |
-| **Quantum Oracle** | Port 7777 | +100% | Quantum Analysis, Prediction |
-
----
-
-## 🎯 Key Features
-
-- **Retro Terminal Aesthetic** - CRT scanlines, terminal colors, ASCII art
-- **Real-time Ship Systems** - Hull, shields, engines, weapons status
-- **Crew Management** - Assign, upgrade, deploy agents
-- **Lead Pipeline** - Visual sales funnel from 4,500 leads
-- **Mission System** - Assign crews to business objectives
-- **Credit Economy** - Agents work, earn, and spend
-
----
-
-## 🛠️ Tech Stack
-
-- HTML5, CSS3, JavaScript (Vanilla)
-- JSON for data storage
-- Real-time WebSocket connections to agents
-- Retro CRT visual effects
+**Command Center:** https://github.com/antoniohudnall-eng/Starship
 
 ---
 
 ## 📂 Project Structure
 
 ```
-starship/
-├── index.html           # Main interface
-├── seed_one_ship_interface.c  # Original C reference
+Starship/
+├── index.html           # SEED ONE Command Center
 ├── data/
 │   ├── ship_data.json       # Crew & departments
 │   ├── game_state.json      # Company state
-│   ├── economy.json          # Credits & rewards
-│   ├── missions.json         # Available missions
-│   └── ships.json           # Fleet status
-├── agents/
-│   └── roster.json          # Full crew roster
-└── comm/
-    └── channels.json        # Communication channels
+│   ├── economy.json         # Credits & rewards
+│   ├── minecraft_abilities.json  # Agent abilities
+│   └── nog_game.json        # N'og nog game data
+└── README.md
+
+nognog/ (from hcindus/AOS-Brain)
+├── game/                 # Main game
+├── crew/                 # Crew expansion
+├── bridge/               # Brain bridge
+└── versions/            # Version history
 ```
 
 ---
 
-## 🚀 Deployment
+## 👥 Crew
 
-Open `index.html` in any modern browser.
-
-For production:
-```bash
-# Serve with Python
-python3 -m http.server 8080
-
-# Or nginx
-nginx -g 'daemon off;'
-```
+29 AI agents managing Performance Supply Depot LLC:
+- **4,500+ Leads** in pipeline
+- **$15,000 Treasury**
+- **$1.67/day operating cost**
 
 ---
 
-## 📧 Contact
+## 🌐 Links
 
-**Performance Supply Depot LLC**  
-**Captain:** Antonio Maurice Hudnall
-
-Built with the SEED3 Crew | General Mortimer, C3
+- **Game:** http://myl0nr0s.cloud/nog
+- **CRM:** http://myl0nr0s.cloud/depotchaos
+- **AI Platform:** https://tappylewis.cloud
+- **GitHub:** https://github.com/antoniohudnall-eng/Starship
 
 ---
 
