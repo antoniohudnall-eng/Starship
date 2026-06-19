@@ -1,0 +1,49 @@
+{
+  "nog": {
+    "name": "NOG",
+    "full_name": "NOG - Voxel Universe Explorer",
+    "type": "Browser-based space exploration game",
+    "platform": "Web (HTML5 Canvas + Three.js)",
+    "status": "Active Development",
+    
+    "game_features": {
+      "world_type": "Voxel-based procedural universe",
+      "universe_size": "Infinite (procedurally generated)",
+      "physics": {
+        "gravity": true,
+        "collision": true,
+        "landing": true,
+        "slingshot": true
+      }
+    },
+    
+    "ships": [
+      { "id": "explorer", "name": "Explorer", "speed": 5, "shields": 3, "cargo": 10 },
+      { "id": "hauler", "name": "Hauler", "speed": 2, "shields": 5, "cargo": 50 },
+      { "id": "fighter", "name": "Fighter", "speed": 8, "shields": 2, "cargo": 2 },
+      { "id": "cruiser", "name": "Cruiser", "speed": 4, "shields": 8, "cargo": 20 },
+      { "id": "scout", "name": "Scout", "speed": 10, "shields": 1, "cargo": 5 }
+    ],
+    
+    "solar_systems": {
+      "grid_size": "100x100x100 voxel chunks",
+      "generation": "Procedural with seeded randomness"
+    },
+    
+    "crew_system": {
+      "name": "N'og nog Crew Expansion",
+      "max_crew": 10,
+      "roles": ["PILOT", "ENGINEER", "SCIENTIST", "COMBAT", "MEDIC", "TRADER"],
+      "levels": ["Rookie", "Cadet", "Officer", "Veteran", "Elite", "Legend"],
+      "initial_crew": [
+        { "name": "Vex", "role": "PILOT" },
+        { "name": "Nyx", "role": "ENGINEER" },
+        { "name": "Jax", "role": "SCIENTIST" },
+        { "name": "Luna", "role": "COMBAT" },
+        { "name": "Aria", "role": "MEDIC" }
+      ]
+    }
+  },
+  
+  "source_location": "/data/data/com.termux/files/home/mortimer/agents/nog/"
+}
