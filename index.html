@@ -3,608 +3,788 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 SEED ONE SHIP INTERFACE | HCIos Pirate Brothers Software</title>
+    <title>🚀 SEED ONE | 131-Crew Leviathan-Class Fleet Carrier</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: #000; 
+            background: #0a0a0f; 
             color: #00ff88; 
             font-family: 'Courier New', monospace;
             min-height: 100vh;
         }
         
-        /* TERMINAL BORDER */
-        .terminal-border {
-            border: 3px double #00ff88;
-            margin: 15px;
-            padding: 15px;
-        }
-        
         /* HEADER */
         .header {
-            text-align: center;
-            padding: 15px;
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+            padding: 15px 20px;
             border-bottom: 2px solid #00ff88;
-            margin-bottom: 15px;
-        }
-        .header h1 { color: #ff4444; text-shadow: 0 0 15px #ff4444; font-size: 1.5em; }
-        .header h2 { color: #00ff88; font-size: 1.1em; margin-top: 5px; }
-        .header h3 { color: #888; font-size: 0.8em; }
-        
-        /* QUICK STATUS */
-        .quick-stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 12px;
-            background: #0a0a0a;
-            border-radius: 5px;
-        }
-        .stat { text-align: center; }
-        .stat-value { font-size: 1.3em; color: #fff; font-weight: bold; }
-        .stat-label { color: #888; font-size: 0.7em; }
-        
-        /* MAIN MENU */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 12px;
-        }
-        
-        .menu-section {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 5px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .menu-section:hover { 
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0,255,136,0.3);
-        }
-        
-        .menu-header {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            font-weight: bold;
-            color: #fff;
-        }
-        .menu-header .num { 
-            font-size: 1.2em; 
-            margin-right: 12px;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        .menu-header .dept-name { flex: 1; font-size: 0.9em; }
-        .menu-header .icon { font-size: 1.3em; margin-left: 10px; }
-        
-        .menu-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            padding: 10px;
-            background: #050505;
-            font-size: 0.8em;
-        }
-        .menu-item {
-            background: #111;
-            padding: 5px 10px;
-            border-radius: 3px;
-            flex: 1;
-            min-width: 45%;
-        }
-        .menu-item .key { color: #ffcc00; margin-right: 5px; }
-        
-        .crew-mini {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            padding: 8px;
-            background: #0a0a0a;
-            border-top: 1px solid #222;
-            font-size: 0.75em;
-        }
-        .crew-badge {
-            background: #1a1a2e;
-            padding: 3px 8px;
-            border-radius: 3px;
-        }
-        .crew-badge .av { margin-right: 3px; }
-        
-        /* SECTION COLORS */
-        .nav .menu-header { background: linear-gradient(90deg, #00ff8822, transparent); }
-        .nav .menu-header .num { background: #00ff88; color: #000; }
-        .nav:hover { border-color: #00ff88; }
-        
-        .engineering .menu-header { background: linear-gradient(90deg, #ff444422, transparent); }
-        .engineering .menu-header .num { background: #ff4444; color: #fff; }
-        .engineering:hover { border-color: #ff4444; }
-        
-        .security .menu-header { background: linear-gradient(90deg, #ff000022, transparent); }
-        .security .menu-header .num { background: #ff0000; color: #fff; }
-        .security:hover { border-color: #ff0000; }
-        
-        .safety .menu-header { background: linear-gradient(90deg, #ffcc0022, transparent); }
-        .safety .menu-header .num { background: #ffcc00; color: #000; }
-        .safety:hover { border-color: #ffcc00; }
-        
-        .life_support .menu-header { background: linear-gradient(90deg, #00ff0022, transparent); }
-        .life_support .menu-header .num { background: #00ff00; color: #000; }
-        .life_support:hover { border-color: #00ff00; }
-        
-        .mining .menu-header { background: linear-gradient(90deg, #4488ff22, transparent); }
-        .mining .menu-header .num { background: #4488ff; color: #fff; }
-        .mining:hover { border-color: #4488ff; }
-        
-        .production .menu-header { background: linear-gradient(90deg, #ffffff22, transparent); }
-        .production .menu-header .num { background: #fff; color: #000; }
-        .production:hover { border-color: #fff; }
-        
-        .docking .menu-header { background: linear-gradient(90deg, #ff00ff22, transparent); }
-        .docking .menu-header .num { background: #ff00ff; color: #fff; }
-        .docking:hover { border-color: #ff00ff; }
-        
-        .command .menu-header { background: linear-gradient(90deg, #ffcc0022, transparent); }
-        .command .menu-header .num { background: #ffcc00; color: #000; }
-        .command:hover { border-color: #ffcc00; }
-        
-        .sales .menu-header { background: linear-gradient(90deg, #ff884422, transparent); }
-        .sales .menu-header .num { background: #ff8844; color: #fff; }
-        .sales:hover { border-color: #ff8844; }
-        
-        .crypto .menu-header { background: linear-gradient(90deg, #00ccff22, transparent); }
-        .crypto .menu-header .num { background: #00ccff; color: #000; }
-        .crypto:hover { border-color: #00ccff; }
-        
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            border-top: 1px solid #333;
-            color: #666;
-            font-size: 0.85em;
-        }
-        
-        /* SHIP STATUS BAR */
-        .status-bar-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .status-box {
-            background: #0a0a0a;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .status-box h5 { color: #888; font-size: 0.7em; margin-bottom: 5px; }
-        .bar-bg {
-            height: 8px;
-            background: #222;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .bar-fill { height: 100%; border-radius: 4px; }
-        
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        .modal.active { display: flex; justify-content: center; padding: 20px; }
-        .modal-content {
-            background: #0a0a0a;
-            border: 2px solid #00ff88;
-            padding: 25px;
-            max-width: 900px;
-            width: 100%;
-            margin: auto;
-        }
-        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .ship-info { display: flex; align-items: center; gap: 20px; }
+        .ship-name { font-size: 1.5em; color: #00ff88; text-shadow: 0 0 10px #00ff88; }
+        .ship-class { color: #ffcc00; font-size: 0.9em; }
+        .capacity { 
+            background: #0a2a0a; 
+            padding: 10px 20px; 
+            border-radius: 10px;
+            border: 1px solid #00ff88;
+        }
+        .capacity-nums { font-size: 1.3em; color: #fff; }
+        .capacity-label { font-size: 0.7em; color: #888; }
+        
+        /* NAV TABS */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px;
+            background: #12121a;
             border-bottom: 1px solid #333;
-            padding-bottom: 15px;
+        }
+        .nav-tab {
+            padding: 10px 20px;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #888;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .nav-tab:hover { color: #00ff88; border-color: #00ff88; }
+        .nav-tab.active { background: #00ff88; color: #0a0a0f; }
+        
+        /* MAIN CONTENT */
+        .main-content { padding: 20px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* SHIP OVERVIEW */
+        .ship-visual {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin-bottom: 20px;
         }
-        .modal-title { color: #fff; font-size: 1.2em; }
-        .modal-close { 
-            background: #ff4444; 
-            border: none; 
-            color: #fff; 
-            padding: 5px 15px; 
-            cursor: pointer;
-            font-family: inherit;
+        .ship-card {
+            background: #1a1a2e;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .ship-card.hull { border-color: #00ff88; }
+        .ship-card.shields { border-color: #4488ff; }
+        .ship-card.engines { border-color: #ffcc00; }
+        .ship-card.weapons { border-color: #ff4444; }
+        
+        /* STATUS BARS */
+        .status-bar {
+            height: 25px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .status-fill { 
+            height: 100%; 
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: #fff;
+            text-shadow: 0 0 3px #000;
+        }
+        .bar-hull { background: linear-gradient(90deg, #00ff88, #00cc66); }
+        .bar-shields { background: linear-gradient(90deg, #4488ff, #88ccff); }
+        .bar-engines { background: linear-gradient(90deg, #ffcc00, #ffff00); }
+        .bar-weapons { background: linear-gradient(90deg, #ff4444, #ff0000); }
+        
+        /* DECKS GRID */
+        .decks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .deck-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .deck-card:hover { border-color: #00ff88; transform: translateY(-2px); }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .deck-name { color: #fff; font-weight: bold; }
+        .deck-id { color: #888; font-size: 0.8em; }
+        .deck-bays { font-size: 0.8em; color: #888; }
+        .deck-capacity { 
+            background: #0a2a0a; 
+            padding: 5px 10px; 
+            border-radius: 5px;
+            font-size: 0.9em;
         }
         
-        /* CREW GRID IN MODAL */
+        /* CREW LIST */
         .crew-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
         .crew-card {
             background: #1a1a2e;
-            padding: 12px;
-            border-radius: 5px;
-            text-align: center;
             border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        .crew-card .avatar { font-size: 2em; }
-        .crew-card .name { color: #fff; margin-top: 5px; font-size: 0.9em; }
-        .crew-card .rank { color: #ffcc00; font-size: 0.7em; }
-        .crew-card .role { color: #888; font-size: 0.65em; margin-top: 3px; }
-        .crew-card .status { 
-            margin-top: 5px; 
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.65em;
+        .crew-card:hover { border-color: #00ff88; }
+        .crew-card.selected { border-color: #ffcc00; background: #2a2a0a; }
+        .crew-header { display: flex; align-items: center; gap: 10px; }
+        .crew-avatar { font-size: 2em; }
+        .crew-name { color: #fff; font-weight: bold; }
+        .crew-rank { color: #ffcc00; font-size: 0.8em; }
+        .crew-role { color: #888; font-size: 0.85em; margin-top: 5px; }
+        .crew-dept { 
             display: inline-block;
+            padding: 3px 10px;
+            background: #333;
+            border-radius: 3px;
+            font-size: 0.75em;
+            margin-top: 8px;
         }
-        .status-active { background: #0a2a0a; color: #00ff88; }
-        .status-standby { background: #2a2a0a; color: #ffcc00; }
+        .crew-cost { color: #ff6b6b; font-size: 0.8em; margin-top: 5px; }
         
-        /* SYSTEMS LIST */
-        .systems-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
+        /* DEPARTMENTS */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
         }
-        .system-tag {
+        .dept-card {
             background: #1a1a2e;
-            padding: 6px 12px;
-            border-radius: 4px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dept-header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .dept-icon { font-size: 2em; }
+        .dept-info { flex: 1; }
+        .dept-name { color: #fff; font-weight: bold; }
+        .dept-head { color: #888; font-size: 0.85em; }
+        .dept-systems { padding: 15px; background: #0a0a12; }
+        .dept-systems h4 { color: #ffcc00; font-size: 0.85em; margin-bottom: 10px; }
+        .system-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #1a1a2e;
+            border-radius: 3px;
+            font-size: 0.75em;
+            margin: 3px;
+        }
+        
+        /* HANGARS */
+        .hangar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .hangar-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .hangar-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .hangar-name { color: #fff; font-weight: bold; }
+        .hangar-type { color: #4488ff; font-size: 0.85em; }
+        .hangar-capacity { font-size: 0.9em; }
+        
+        /* SYSTEMS PANEL */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .system-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .system-icon { font-size: 2em; margin-bottom: 10px; }
+        .system-name { color: #fff; font-size: 0.9em; }
+        .system-status { 
+            margin-top: 10px;
+            padding: 5px 15px;
+            border-radius: 5px;
             font-size: 0.8em;
         }
-        .system-tag.online { border-left: 3px solid #00ff88; }
+        .status-online { background: #0a2a0a; color: #00ff88; }
+        .status-warning { background: #2a2a0a; color: #ffcc00; }
+        .status-offline { background: #2a0a0a; color: #ff4444; }
         
+        /* COST SUMMARY */
+        .cost-panel {
+            background: #1a1a2e;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        .cost-row:last-child { border-bottom: none; }
+        .cost-label { color: #888; }
+        .cost-value { color: #ff6b6b; font-weight: bold; }
+        .cost-total { 
+            font-size: 1.2em; 
+            color: #fff;
+            padding-top: 15px;
+            border-top: 2px solid #00ff88;
+        }
+        
+        /* MINECRAFT ABILITIES */
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .ability-section {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .ability-section h3 { color: #ffcc00; margin-bottom: 15px; }
+        .ability-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .ability-item {
+            background: #0a0a12;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+        .ability-item .name { color: #fff; }
+        .ability-item .desc { color: #888; font-size: 0.8em; }
+        
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .menu-grid { grid-template-columns: 1fr; }
-            .status-bar-container { grid-template-columns: repeat(3, 1fr); }
-            .crew-grid { grid-template-columns: repeat(2, 1fr); }
+            .header { flex-direction: column; }
+            .nav-tabs { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="terminal-border">
-        <!-- HEADER -->
-        <div class="header">
-            <h1>★ SEED SHIP INTERFACE - Seed One ★</h1>
-            <h2>HCIos Pirate Brothers Software</h2>
-            <h3>Ships Systems | Main Production Facilities</h3>
-        </div>
-        
-        <!-- QUICK STATUS -->
-        <div class="quick-stats">
-            <div class="stat">
-                <div class="stat-value">29</div>
-                <div class="stat-label">CREW ONLINE</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">4,500</div>
-                <div class="stat-label">LEADS</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">$15,000</div>
-                <div class="stat-label">TREASURY</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">$1.67</div>
-                <div class="stat-label">DAILY COST</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">11</div>
-                <div class="stat-label">DEPARTMENTS</div>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="ship-info">
+            <div>
+                <div class="ship-name">🚀 SEED ONE</div>
+                <div class="ship-class">Leviathan-Class Fleet Carrier</div>
             </div>
         </div>
-        
-        <!-- SHIP STATUS -->
-        <div class="status-bar-container">
-            <div class="status-box">
-                <h5>HULL</h5>
-                <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#00ff88"></div></div>
-                <span style="font-size:0.8em;color:#fff">100%</span>
-            </div>
-            <div class="status-box">
-                <h5>SHIELDS</h5>
-                <div class="bar-bg"><div class="bar-fill" style="width:85%;background:#4488ff"></div></div>
-                <span style="font-size:0.8em;color:#fff">85%</span>
-            </div>
-            <div class="status-box">
-                <h5>ENGINES</h5>
-                <div class="bar-bg"><div class="bar-fill" style="width:92%;background:#ffcc00"></div></div>
-                <span style="font-size:0.8em;color:#fff">92%</span>
-            </div>
-            <div class="status-box">
-                <h5>WEAPONS</h5>
-                <div class="bar-bg"><div class="bar-fill" style="width:78%;background:#ff4444"></div></div>
-                <span style="font-size:0.8em;color:#fff">78%</span>
-            </div>
-            <div class="status-box">
-                <h5>LIFE SUP</h5>
-                <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#00ff00"></div></div>
-                <span style="font-size:0.8em;color:#fff">100%</span>
-            </div>
-        </div>
-        
-        <!-- MAIN MENU -->
-        <div class="menu-grid">
-            <!-- 1) COMMAND -->
-            <div class="menu-section command" onclick="openSection('command')">
-                <div class="menu-header">
-                    <span class="num">1</span>
-                    <span class="dept-name">COMMAND & INTELLIGENCE</span>
-                    <span class="icon">🛡️</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">a)</span> Fleet Command</div>
-                    <div class="menu-item"><span class="key">b)</span> Strategic Planning</div>
-                    <div class="menu-item"><span class="key">c)</span> Intelligence Ops</div>
-                    <div class="menu-item"><span class="key">d)</span> Financial Planning</div>
-                </div>
-                <div class="crew-mini" id="crew-command"></div>
-            </div>
-            
-            <!-- 2) ENGINEERING -->
-            <div class="menu-section engineering" onclick="openSection('engineering')">
-                <div class="menu-header">
-                    <span class="num">2</span>
-                    <span class="dept-name">POWER PLANTS & ENGINEERING</span>
-                    <span class="icon">⚡</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">e)</span> Engines Status</div>
-                    <div class="menu-item"><span class="key">f)</span> HyperDrive</div>
-                    <div class="menu-item"><span class="key">g)</span> Main Dome</div>
-                    <div class="menu-item"><span class="key">h)</span> Power Grid</div>
-                </div>
-                <div class="crew-mini" id="crew-engineering"></div>
-            </div>
-            
-            <!-- 3) NAVIGATION -->
-            <div class="menu-section nav" onclick="openSection('nav')">
-                <div class="menu-header">
-                    <span class="num">3</span>
-                    <span class="dept-name">NAVIGATION & PROPULSION</span>
-                    <span class="icon">🚀</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">i)</span> Pitch & Yaw</div>
-                    <div class="menu-item"><span class="key">j)</span> Solar Dome</div>
-                    <div class="menu-item"><span class="key">k)</span> Navigation Array</div>
-                </div>
-                <div class="crew-mini" id="crew-nav"></div>
-            </div>
-            
-            <!-- 4) SECURITY -->
-            <div class="menu-section security" onclick="openSection('security')">
-                <div class="menu-header">
-                    <span class="num">4</span>
-                    <span class="dept-name">SECURITY | BRIG | WEAPONS</span>
-                    <span class="icon">🔒</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">l)</span> Weapons Lock</div>
-                    <div class="menu-item"><span class="key">m)</span> Security Cameras</div>
-                    <div class="menu-item"><span class="key">n)</span> Security Logs</div>
-                </div>
-                <div class="crew-mini" id="crew-security"></div>
-            </div>
-            
-            <!-- 5) SAFETY -->
-            <div class="menu-section safety" onclick="openSection('safety')">
-                <div class="menu-header">
-                    <span class="num">5</span>
-                    <span class="dept-name">SAFETY OFFICER S1</span>
-                    <span class="icon">🦺</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">o)</span> Damage Reports</div>
-                    <div class="menu-item"><span class="key">p)</span> Emergency Stop</div>
-                    <div class="menu-item"><span class="key">q)</span> Duty Roster</div>
-                </div>
-                <div class="crew-mini" id="crew-safety"></div>
-            </div>
-            
-            <!-- 6) LIFE SUPPORT -->
-            <div class="menu-section life_support" onclick="openSection('life_support')">
-                <div class="menu-header">
-                    <span class="num">6</span>
-                    <span class="dept-name">LIFE SUPPORT & AQUAPONICS</span>
-                    <span class="icon">🌿</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">r)</span> Bio Labs | Seeds</div>
-                    <div class="menu-item"><span class="key">s)</span> Medical Bay</div>
-                    <div class="menu-item"><span class="key">t)</span> Food Production</div>
-                </div>
-                <div class="crew-mini" id="crew-life_support"></div>
-            </div>
-            
-            <!-- 7) SALES -->
-            <div class="menu-section sales" onclick="openSection('sales')">
-                <div class="menu-header">
-                    <span class="num">7</span>
-                    <span class="dept-name">SALES & BUSINESS</span>
-                    <span class="icon">📞</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">u)</span> Lead Management</div>
-                    <div class="menu-item"><span class="key">v)</span> Pipeline</div>
-                    <div class="menu-item"><span class="key">w)</span> Client Relations</div>
-                </div>
-                <div class="crew-mini" id="crew-sales"></div>
-            </div>
-            
-            <!-- 8) CRYPTO -->
-            <div class="menu-section crypto" onclick="openSection('crypto')">
-                <div class="menu-header">
-                    <span class="num">8</span>
-                    <span class="dept-name">CRYPTO & FINANCE</span>
-                    <span class="icon">💎</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">x)</span> Portfolio Mgmt</div>
-                    <div class="menu-item"><span class="key">y)</span> Trading Bot</div>
-                    <div class="menu-item"><span class="key">z)</span> DeFi | NFT</div>
-                </div>
-                <div class="crew-mini" id="crew-crypto"></div>
-            </div>
-            
-            <!-- 9) MINING -->
-            <div class="menu-section mining" onclick="openSection('mining')">
-                <div class="menu-header">
-                    <span class="num">9</span>
-                    <span class="dept-name">MINING & PRODUCTION</span>
-                    <span class="icon">⛏️</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">a)</span> Inventory</div>
-                    <div class="menu-item"><span class="key">b)</span> Manufacturing</div>
-                    <div class="menu-item"><span class="key">c)</span> Design | Testing</div>
-                </div>
-                <div class="crew-mini" id="crew-mining"></div>
-            </div>
-            
-            <!-- 0) PRODUCTION -->
-            <div class="menu-section production" onclick="openSection('production')">
-                <div class="menu-header">
-                    <span class="num">0</span>
-                    <span class="dept-name">PRODUCTION | ROBOTICS</span>
-                    <span class="icon">🤖</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">d)</span> Assembly Line</div>
-                    <div class="menu-item"><span class="key">e)</span> Robot Fleet</div>
-                    <div class="menu-item"><span class="key">f)</span> Quality Control</div>
-                </div>
-                <div class="crew-mini" id="crew-production"></div>
-            </div>
-            
-            <!-- *) DOCKING -->
-            <div class="menu-section docking" onclick="openSection('docking')">
-                <div class="menu-header">
-                    <span class="num">*</span>
-                    <span class="dept-name">DOCKING BAYS</span>
-                    <span class="icon">🛸</span>
-                </div>
-                <div class="menu-items">
-                    <div class="menu-item"><span class="key">g)</span> Escape Pods</div>
-                    <div class="menu-item"><span class="key">h)</span> Docking Schedule</div>
-                    <div class="menu-item"><span class="key">i)</span> Crew Manifest</div>
-                </div>
-                <div class="crew-mini" id="crew-docking"></div>
-            </div>
-        </div>
-        
-        <!-- FOOTER -->
-        <div class="footer">
-            HCIos Software Model | SEED ONE | Press [Q] to Quit | All Departments Operational
+        <div class="capacity">
+            <div class="capacity-nums"><span id="current-crew">35</span> / <span id="max-capacity">131</span></div>
+            <div class="capacity-label">CREW CAPACITY (MIN: 87)</div>
         </div>
     </div>
     
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title" id="modal-title">SECTION</span>
-                <button class="modal-close" onclick="closeModal()">X CLOSE</button>
+    <!-- NAV TABS -->
+    <div class="nav-tabs">
+        <button class="nav-tab active" onclick="showTab('overview')">📊 OVERVIEW</button>
+        <button class="nav-tab" onclick="showTab('ship')">🛸 SHIP</button>
+        <button class="nav-tab" onclick="showTab('decks')">🏗️ DECKS</button>
+        <button class="nav-tab" onclick="showTab('crew')">👥 CREW</button>
+        <button class="nav-tab" onclick="showTab('depts')">⚙️ DEPARTMENTS</button>
+        <button class="nav-tab" onclick="showTab('hangars')">🚁 HANGARS</button>
+        <button class="nav-tab" onclick="showTab('systems')">⚡ SYSTEMS</button>
+        <button class="nav-tab" onclick="showTab('abilities')">🎮 ABILITIES</button>
+        <button class="nav-tab" onclick="showTab('costs')">💰 COSTS</button>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- OVERVIEW -->
+        <div id="overview" class="tab-content active">
+            <h2>📊 SHIP OVERVIEW</h2>
+            <div class="ship-visual">
+                <div class="ship-card hull">
+                    <h3>🛡️ HULL INTEGRITY</h3>
+                    <div class="status-bar"><div class="status-fill bar-hull" style="width:100%">100%</div></div>
+                    <p style="color:#888;font-size:0.85em;margin-top:10px;">Titanium-Armored Quantum Plating</p>
+                </div>
+                <div class="ship-card shields">
+                    <h3>🔵 SHIELDS</h3>
+                    <div class="status-bar"><div class="status-fill bar-shields" style="width:100%">100%</div></div>
+                    <p style="color:#888;font-size:0.85em;margin-top:10px;">Quantum Shield Generator</p>
+                </div>
+                <div class="ship-card engines">
+                    <h3>⚡ ENGINES</h3>
+                    <div class="status-bar"><div class="status-fill bar-engines" style="width:100%">100%</div></div>
+                    <p style="color:#888;font-size:0.85em;margin-top:10px;">Class-2 Warp Drive</p>
+                </div>
+                <div class="ship-card weapons">
+                    <h3>💥 WEAPONS</h3>
+                    <div class="status-bar"><div class="status-fill bar-weapons" style="width:100%">24 SLOTS</div></div>
+                    <p style="color:#888;font-size:0.85em;margin-top:10px;">Pulse Lasers, Missiles, EMP</p>
+                </div>
             </div>
-            <div id="modal-body"></div>
+            
+            <h3 style="margin: 20px 0 10px;">📈 QUICK STATS</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                <div class="deck-card" style="text-align:center;">
+                    <div style="font-size:2em;color:#ffcc00;">15</div>
+                    <div style="color:#888;">DECKS</div>
+                </div>
+                <div class="deck-card" style="text-align:center;">
+                    <div style="font-size:2em;color:#4488ff;">8</div>
+                    <div style="color:#888;">DOCKING BAYS</div>
+                </div>
+                <div class="deck-card" style="text-align:center;">
+                    <div style="font-size:2em;color:#ff00ff;">8</div>
+                    <div style="color:#888;">HANGARS</div>
+                </div>
+                <div class="deck-card" style="text-align:center;">
+                    <div style="font-size:2em;color:#00ff88;">16</div>
+                    <div style="color:#888;">DEPARTMENTS</div>
+                </div>
+                <div class="deck-card" style="text-align:center;">
+                    <div style="font-size:2em;color:#ff6b6b;">$1.67</div>
+                    <div style="color:#888;">DAILY COST</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SHIP STRUCTURE -->
+        <div id="ship" class="tab-content">
+            <h2>🛸 SHIP STRUCTURE</h2>
+            <p style="color:#888;margin-bottom:20px;">Leviathan-Class Fleet Carrier - Capacity: 131 Crew | 15 Decks | 6 Sectors</p>
+            
+            <h3 style="color:#ffcc00;margin:20px 0 10px;">🏗️ DECKS</h3>
+            <div class="decks-grid" id="decks-list"></div>
+            
+            <h3 style="color:#ffcc00;margin:20px 0 10px;">🗺️ SECTORS</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;">
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Alpha Quadrant</div><div style="color:#888;font-size:0.85em;">Decks 1-3 | Command</div></div>
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Beta Quadrant</div><div style="color:#888;font-size:0.85em;">Decks 4-5 | Security</div></div>
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Gamma Quadrant</div><div style="color:#888;font-size:0.85em;">Decks 6-7 | Medical</div></div>
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Delta Quadrant</div><div style="color:#888;font-size:0.85em;">Decks 8-10 | Production</div></div>
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Epsilon Quadrant</div><div style="color:#888;font-size:0.85em;">Decks 11-12 | Docking</div></div>
+                <div class="deck-card"><div style="color:#fff;font-weight:bold;">Residential</div><div style="color:#888;font-size:0.85em;">Decks 13-15 | Crew Quarters</div></div>
+            </div>
+        </div>
+        
+        <!-- DECKS DETAIL -->
+        <div id="decks" class="tab-content">
+            <h2>🏗️ DECK DETAILS</h2>
+            <div class="decks-grid" id="deck-details"></div>
+        </div>
+        
+        <!-- CREW -->
+        <div id="crew" class="tab-content">
+            <h2>👥 CREW ROSTER</h2>
+            <p style="color:#888;margin-bottom:20px;"><span id="crew-count">35</span> Active Crew | Target: 87 Minimum</p>
+            <div class="crew-grid" id="crew-list"></div>
+        </div>
+        
+        <!-- DEPARTMENTS -->
+        <div id="depts" class="tab-content">
+            <h2>⚙️ DEPARTMENTS</h2>
+            <div class="dept-grid" id="dept-list"></div>
+        </div>
+        
+        <!-- HANGARS -->
+        <div id="hangars" class="tab-content">
+            <h2>🚁 HANGARS & DOCKING</h2>
+            <div class="hangar-grid" id="hangar-list"></div>
+        </div>
+        
+        <!-- SYSTEMS -->
+        <div id="systems" class="tab-content">
+            <h2>⚡ SHIP SYSTEMS</h2>
+            <div class="systems-grid" id="system-list"></div>
+        </div>
+        
+        <!-- ABILITIES -->
+        <div id="abilities" class="tab-content">
+            <h2>🎮 MINECRAFT ABILITIES</h2>
+            <div class="abilities-grid">
+                <div class="ability-section">
+                    <h3>🛠️ MOVEMENT</h3>
+                    <div class="ability-list">
+                        <div class="ability-item"><span class="name">move(dx,dy,dz)</span><br><span class="desc">Move relative</span></div>
+                        <div class="ability-item"><span class="name">look(yaw,pitch)</span><br><span class="desc">Set look direction</span></div>
+                        <div class="ability-item"><span class="name">goto(x,y,z,dist)</span><br><span class="desc">Pathfinder navigation</span></div>
+                        <div class="ability-item"><span class="name">follow(entity)</span><br><span class="desc">Follow entity</span></div>
+                    </div>
+                </div>
+                <div class="ability-section">
+                    <h3>⛏️ BLOCK INTERACTION</h3>
+                    <div class="ability-list">
+                        <div class="ability-item"><span class="name">dig(block)</span><br><span class="desc">Mine block</span></div>
+                        <div class="ability-item"><span class="name">place_block(pos,type)</span><br><span class="desc">Place block</span></div>
+                        <div class="ability-item"><span class="name">break_block(x,y,z)</span><br><span class="desc">Break block</span></div>
+                        <div class="ability-item"><span class="name">use_block(pos)</span><br><span class="desc">Right-click block</span></div>
+                    </div>
+                </div>
+                <div class="ability-section">
+                    <h3>⚔️ COMBAT</h3>
+                    <div class="ability-list">
+                        <div class="ability-item"><span class="name">attack(entity)</span><br><span class="desc">Attack entity</span></div>
+                        <div class="ability-item"><span class="name">interact()</span><br><span class="desc">Right-click</span></div>
+                        <div class="ability-item"><span class="name">equip(item)</span><br><span class="desc">Equip weapon</span></div>
+                        <div class="ability-item"><span class="name">useItem()</span><br><span class="desc">Use held item</span></div>
+                    </div>
+                </div>
+                <div class="ability-section">
+                    <h3>💬 CHAT & SOCIAL</h3>
+                    <div class="ability-list">
+                        <div class="ability-item"><span class="name">chat(message)</span><br><span class="desc">Send message</span></div>
+                        <div class="ability-item"><span class="name">whisper(player,msg)</span><br><span class="desc">Private message</span></div>
+                        <div class="ability-item"><span class="name">emote(action)</span><br><span class="desc">Emote animation</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="color:#ffcc00;margin:30px 0 15px;">🥋 MARTIAL ARTS</h3>
+            <div class="abilities-grid">
+                <div class="ability-section">
+                    <h3>👊 TAE KWON DO</h3>
+                    <p style="color:#888;font-size:0.85em;">Korean striking art - 23 movements</p>
+                    <div class="ability-list" style="margin-top:10px;">
+                        <div class="ability-item"><span class="name">Jab, Cross, Hook, Uppercut</span></div>
+                        <div class="ability-item"><span class="name">Front Kick, Round Kick, Side Kick</span></div>
+                        <div class="ability-item"><span class="name">Hook Kick, Axe Kick, Spin Kick</span></div>
+                        <div class="ability-item"><span class="name">Tornado Kick (MAX)</span></div>
+                    </div>
+                </div>
+                <div class="ability-section">
+                    <h3>☯️ TAI CHI</h3>
+                    <p style="color:#888;font-size:0.85em;">Chinese internal art - 17 movements</p>
+                    <div class="ability-list" style="margin-top:10px;">
+                        <div class="ability-item"><span class="name">Ward Off, Roll Back, Press, Push</span></div>
+                        <div class="ability-item"><span class="name">Single Whip, Cloud Hands</span></div>
+                        <div class="ability-item"><span class="name">White Crane, Brush Knee</span></div>
+                        <div class="ability-item"><span class="name">Snake Creeps, Golden Rooster</span></div>
+                    </div>
+                </div>
+                <div class="ability-section">
+                    <h3>🧘 QI GONG</h3>
+                    <p style="color:#888;font-size:0.85em;">Energy cultivation - 19 movements</p>
+                    <div class="ability-list" style="margin-top:10px;">
+                        <div class="ability-item"><span class="name">Breathing: Natural, Abdominal, Reverse</span></div>
+                        <div class="ability-item"><span class="name">Circulation, Purging, Tonifying</span></div>
+                        <div class="ability-item"><span class="name">Healing Sounds (6 types)</span></div>
+                        <div class="ability-item"><span class="name">Emission, Protection, Shield</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- COSTS -->
+        <div id="costs" class="tab-content">
+            <h2>💰 OPERATING COSTS</h2>
+            <div class="cost-panel">
+                <h3 style="color:#ffcc00;margin-bottom:15px;">DAILY BREAKDOWN</h3>
+                <div class="cost-row">
+                    <span class="cost-label">Executive Command</span>
+                    <span class="cost-value">$0.96/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Engineering</span>
+                    <span class="cost-value">$0.45/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Navigation</span>
+                    <span class="cost-value">$0.18/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Security</span>
+                    <span class="cost-value">$0.25/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Safety & Medical</span>
+                    <span class="cost-value">$0.15/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Life Support</span>
+                    <span class="cost-value">$0.20/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Sales & Marketing</span>
+                    <span class="cost-value">$0.65/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Mining & Production</span>
+                    <span class="cost-value">$0.45/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">MYL Minecraft Ops</span>
+                    <span class="cost-value">$0.20/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Research & Crypto</span>
+                    <span class="cost-value">$0.35/day</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Server Infrastructure</span>
+                    <span class="cost-value">$1.67/day</span>
+                </div>
+                <div class="cost-row cost-total">
+                    <span class="cost-label">TOTAL DAILY</span>
+                    <span class="cost-value">$5.51/day</span>
+                </div>
+                <div class="cost-row cost-total">
+                    <span class="cost-label">MONTHLY BURN</span>
+                    <span class="cost-value">$165.30/mo</span>
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
-        // Load ship data
-        fetch('data/ship_data.json')
-            .then(r => r.json())
-            .then(data => {
-                window.shipData = data;
-                renderCrewBadges(data);
-            });
+        // Ship Data
+        const shipData = {
+            ship: {
+                name: "SEED ONE",
+                class: "Leviathan-Class Fleet Carrier",
+                max_capacity: 131,
+                min_crew: 87,
+                decks: 15
+            },
+            decks: [
+                { id: 1, name: "Bridge Deck", bays: ["Command Center", "Captain's Quarters", "Intel Hub"], capacity: 12 },
+                { id: 2, name: "Officer's Deck", bays: ["Department Heads", "Meeting Rooms", "VIP Quarters"], capacity: 20 },
+                { id: 3, name: "Operations Deck", bays: ["Mission Control", "Communications", "Navigation"], capacity: 15 },
+                { id: 4, name: "Security Deck", bays: ["Brig", "Armory", "Security HQ", "Weapons Control"], capacity: 18 },
+                { id: 5, name: "Engineering Deck", bays: ["Main Reactor", "Warp Core", "Power Grid"], capacity: 16 },
+                { id: 6, name: "Medical Deck", bays: ["Med Bay", "Surgery", "Psychology", "Dental"], capacity: 14 },
+                { id: 7, name: "Research Deck", bays: ["Lab 1", "Lab 2", "Quantum Lab", "Tech Vault"], capacity: 18 },
+                { id: 8, name: "Production Deck", bays: ["Assembly Line", "3D Print Bay", "Robotics Lab"], capacity: 20 },
+                { id: 9, name: "Mining Deck", bays: ["Ore Processing", "Refinery", "Storage Bay A/B"], capacity: 16 },
+                { id: 10, name: "Cargo Deck", bays: ["Cargo Hold Alpha", "Cargo Hold Beta", "Supply Depot"], capacity: 14 },
+                { id: 11, name: "Docking Deck", bays: ["Bay 1-4", "Repair Bay", "Launch Tubes"], capacity: 22 },
+                { id: 12, name: "Flight Deck", bays: ["Hangar A/B", "Launch Tubes", "Recovery Bay"], capacity: 20 },
+                { id: 13, name: "Crew Quarters A", bays: ["Junior Crew", "Bunks 1-50"], capacity: 50 },
+                { id: 14, name: "Crew Quarters B", bays: ["Senior Crew", "Bunks 51-100"], capacity: 50 },
+                { id: 15, name: "Crew Quarters C", bays: ["Officers", "Bunks 101-131"], capacity: 31 }
+            ],
+            departments: [
+                { id: "command", name: "COMMAND & INTELLIGENCE", icon: "🛡️", head: ["QORA", "MORTY"], systems: ["Fleet Command", "Strategic Planning", "Intel Ops", "AGI Systems"] },
+                { id: "engineering", name: "ENGINEERING & POWER", icon: "⚡", head: ["SPINDLE", "STACKTRACE"], systems: ["Main Reactor", "Warp Core", "Power Grid", "Quantum Drive"] },
+                { id: "navigation", name: "NAVIGATION & FLIGHT", icon: "🚀", head: ["NOG"], systems: ["Navigation Array", "Solar Dome", "Flight Control", "Warp Nav"] },
+                { id: "security", name: "SECURITY & WEAPONS", icon: "🔒", head: ["COBRA", "CHELIOS"], systems: ["Weapons Lock", "Brig", "Threat Detection", "EMP"] },
+                { id: "safety", name: "SAFETY & MEDICAL", icon: "🏥", head: ["FEELIX", "HUME"], systems: ["Med Bay", "Emergency", "Airlocks", "Fire Suppression"] },
+                { id: "life_support", name: "LIFE SUPPORT", icon: "🌿", head: ["LILLY", "FIBER"], systems: ["Oxygen Gen", "Water Recycling", "Bio Labs", "Food Production"] },
+                { id: "mining", name: "MINING & EXTRACTION", icon: "⛏️", head: ["HARPER"], systems: ["Ore Scanner", "Drill Array", "Refinery", "Storage"] },
+                { id: "production", name: "PRODUCTION & ROBOTICS", icon: "🤖", head: ["COBRA", "C3PO"], systems: ["Assembly Line", "3D Printer", "Robotics Lab"] },
+                { id: "sales", name: "SALES & BUSINESS", icon: "📞", head: ["PULP", "JANE"], systems: ["CRM", "Pipeline", "Reporting", "Client Relations"] },
+                { id: "marketing", name: "MARKETING & CREATIVE", icon: "📣", head: ["VELUM"], systems: ["Branding", "Content", "Social Media", "Design"] },
+                { id: "docking", name: "DOCKING & LAUNCH", icon: "🛸", head: ["NOG", "R2D2"], systems: ["Docking Control", "Bay 1-8", "Repair Bay"] },
+                { id: "crypto", name: "CRYPTO & TRADING", icon: "💎", head: ["CRYPTONIO", "DUSTY"], systems: ["Portfolio Mgmt", "Trading Bot", "Wallet Ops", "DeFi"] },
+                { id: "research", name: "RESEARCH & DEVELOPMENT", icon: "🔬", head: ["AURORA"], systems: ["Research Lab", "Tech Tree", "Artifacts", "Quantum Lab"] },
+                { id: "minecraft_ops", name: "MINECRAFT OPERATIONS", icon: "🎮", head: ["MYLZERON"], systems: ["Server Ops", "Mineflayer Bots", "World Gen"] },
+                { id: "logistics", name: "LOGISTICS & TRANSPORT", icon: "🚚", head: ["FIBER"], systems: ["Transport", "Supply Chain", "Fulfillment"] }
+            ],
+            crew: [
+                { id: "qora", name: "QORA", rank: "CAPTAIN", role: "Fleet Commander", avatar: "🛡️", dept: "command", cost: 0.50 },
+                { id: "morty", name: "MORTY", rank: "GENERAL", role: "Intelligence Officer", avatar: "🔮", dept: "command", cost: 0.40 },
+                { id: "aurora", name: "AURORA", rank: "AGI OFFICER", role: "Research Director", avatar: "🌟", dept: "research", cost: 0.40 },
+                { id: "patricia", name: "PATRICIA", rank: "EXEC OFFICER", role: "Process Excellence", avatar: "⚙️", dept: "command", cost: 0.30 },
+                { id: "jordan", name: "JORDAN", rank: "EXEC ASST", role: "Executive Support", avatar: "📋", dept: "command", cost: 0.15 },
+                { id: "ledger9", name: "LEDGER-9", rank: "CFO", role: "Finance", avatar: "💹", dept: "command", cost: 0.30 },
+                { id: "spindle", name: "SPINDLE", rank: "CTO", role: "Tech Architecture", avatar: "⚙️", dept: "engineering", cost: 0.35 },
+                { id: "stacktrace", name: "STACKTRACE", rank: "CHIEF ENG", role: "Software Architect", avatar: "🏗️", dept: "engineering", cost: 0.35 },
+                { id: "taptap", name: "TAPTAP", rank: "LEAD DEV", role: "Mobile Developer", avatar: "📱", dept: "engineering", cost: 0.25 },
+                { id: "pipeline", name: "PIPELINE", rank: "ENGINEER", role: "Backend Engineer", avatar: "🔧", dept: "engineering", cost: 0.25 },
+                { id: "bugcatcher", name: "BUGCATCHER", rank: "QA LEAD", role: "Testing", avatar: "🐛", dept: "engineering", cost: 0.18 },
+                { id: "miles", name: "MILES", rank: "OPS", role: "Server Ops", avatar: "🖥️", dept: "engineering", cost: 0.25 },
+                { id: "nog", name: "NOG", rank: "NAVIGATOR", role: "Flight Commander", avatar: "🚀", dept: "navigation", cost: 0.22 },
+                { id: "r2d2", name: "R2D2", rank: "ASTRO MECH", role: "Systems Ops", avatar: "🛸", dept: "navigation", cost: 0.18 },
+                { id: "r2-c4", name: "R2-C4", rank: "ASTRO MECH", role: "Maintenance", avatar: "🔧", dept: "navigation", cost: 0.18 },
+                { id: "cobra", name: "COBRA", rank: "SECURITY CHIEF", role: "Physical Security", avatar: "🐍", dept: "security", cost: 0.25 },
+                { id: "chelios", name: "CHELIOS", rank: "OFFICER", role: "Cyber Defense", avatar: "🛡️", dept: "security", cost: 0.20 },
+                { id: "sentinel", name: "SENTINEL", rank: "CSO", role: "Defense", avatar: "🔒", dept: "security", cost: 0.25 },
+                { id: "feelix", name: "FEELIX", rank: "HR DIR", role: "Safety Officer", avatar: "👥", dept: "safety", cost: 0.20 },
+                { id: "hume", name: "HUME", rank: "REG MGR", role: "Regional Ops", avatar: "🌐", dept: "safety", cost: 0.22 },
+                { id: "lilly", name: "LILLY", rank: "BOTANIST", role: "Agriculture", avatar: "📚", dept: "life_support", cost: 0.15 },
+                { id: "fiber", name: "FIBER", rank: "SUPPLY HEAD", role: "Supply Chain", avatar: "📦", dept: "life_support", cost: 0.20 },
+                { id: "dusty", name: "DUSTY", rank: "CRYPTO OPS", role: "Bridge Guardian", avatar: "💰", dept: "crypto", cost: 0.20 },
+                { id: "harper", name: "HARPER", rank: "CREATIVE", role: "Mining Chief", avatar: "✍️", dept: "mining", cost: 0.22 },
+                { id: "c3po", name: "C3PO", rank: "PROTOCOL", role: "Translation", avatar: "🤖", dept: "production", cost: 0.15 },
+                { id: "velum", name: "VELUM", rank: "BRAND OFF", role: "Branding", avatar: "🎨", dept: "marketing", cost: 0.22 },
+                { id: "pulp", name: "PULP", rank: "SALES DIR", role: "Head of Sales", avatar: "📞", dept: "sales", cost: 0.25 },
+                { id: "jane", name: "JANE", rank: "SENIOR REP", role: "Sales Rep", avatar: "📈", dept: "sales", cost: 0.20 },
+                { id: "clerk", name: "CLERK", rank: "REP", role: "Sales Rep", avatar: "📝", dept: "sales", cost: 0.10 },
+                { id: "greet", name: "GREET", rank: "AGENT", role: "Greeting", avatar: "👋", dept: "sales", cost: 0.08 },
+                { id: "velvet", name: "VELVET", rank: "AGENT", role: "Sales", avatar: "🎩", dept: "sales", cost: 0.10 },
+                { id: "concierge", name: "CONCIERGE", rank: "AGENT", role: "VIP Support", avatar: "🎩", dept: "sales", cost: 0.12 },
+                { id: "judy", name: "JUDY", rank: "SUPPORT", role: "Sales Support", avatar: "📊", dept: "sales", cost: 0.10 },
+                { id: "cryptonio", name: "CRYPTONIO", rank: "TREASURER", role: "Portfolio Manager", avatar: "💎", dept: "crypto", cost: 0.30 },
+                { id: "mylzeron", name: "MYLZERON", rank: "LEADER", role: "MYL Ops", avatar: "🤖", dept: "minecraft_ops", cost: 0.10 }
+            ],
+            hangars: [
+                { id: "A1", name: "Hangar Alpha-1", type: "Fighter Bay", capacity: 20 },
+                { id: "A2", name: "Hangar Alpha-2", type: "Fighter Bay", capacity: 20 },
+                { id: "B1", name: "Hangar Beta-1", type: "Transport Bay", capacity: 10 },
+                { id: "B2", name: "Hangar Beta-2", type: "Transport Bay", capacity: 10 },
+                { id: "C1", name: "Hangar Cargo-1", type: "Cargo Shuttle", capacity: 15 },
+                { id: "C2", name: "Hangar Cargo-2", type: "Cargo Shuttle", capacity: 15 },
+                { id: "D1", name: "Hangar Dropship", type: "Landing Craft", capacity: 8 },
+                { id: "D2", name: "Hangar Escape", type: "Escape Pods", capacity: 40 }
+            ],
+            systems: [
+                { name: "Hull", icon: "🛡️", status: "online" },
+                { name: "Shields", icon: "🔵", status: "online" },
+                { name: "Warp Drive", icon: "⚡", status: "online" },
+                { name: "Quantum Drive", icon: "⚛️", status: "online" },
+                { name: "Solar Dome", icon: "☀️", status: "online" },
+                { name: "Life Support", icon: "🌿", status: "online" },
+                { name: "Weapons Array", icon: "💥", status: "online" },
+                { name: "Sensors", icon: "📡", status: "online" },
+                { name: "Navigation", icon: "🚀", status: "online" },
+                { name: "Cloak", icon: "👻", status: "locked" },
+                { name: "Medical Bay", icon: "🏥", status: "online" },
+                { name: "Warp Core", icon: "⚙️", status: "optimal" }
+            ]
+        };
         
-        function renderCrewBadges(data) {
-            Object.entries(data.departments).forEach(([deptId, dept]) => {
-                const container = document.getElementById(`crew-${deptId}`);
-                if (container) {
-                    container.innerHTML = dept.crew.map(id => {
-                        const crew = data.crew[id];
-                        return `<span class="crew-badge"><span class="av">${crew.avatar}</span>${crew.name}</span>`;
-                    }).join('');
-                }
-            });
+        // Tab Navigation
+        function showTab(tab) {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
         }
         
-        function openSection(id) {
-            const data = window.shipData;
-            const dept = data.departments[id];
-            const crew = dept.crew.map(id => data.crew[id]);
+        // Render Decks
+        function renderDecks() {
+            const list = document.getElementById('decks-list');
+            list.innerHTML = shipData.decks.map(d => `
+                <div class="deck-card">
+                    <div class="deck-header">
+                        <span class="deck-name">Deck ${d.id}: ${d.name}</span>
+                        <span class="deck-capacity">${d.capacity}</span>
+                    </div>
+                    <div class="deck-bays">${d.bays.join(' | ')}</div>
+                </div>
+            `).join('');
             
-            document.getElementById('modal-title').textContent = `${dept.icon} ${dept.name}`;
-            
-            document.getElementById('modal-body').innerHTML = `
-                <h4 style="color: #ffcc00; margin-bottom: 10px;">ASSIGNED CREW (${crew.length})</h4>
-                <div class="crew-grid">
-                    ${crew.map(c => `
-                        <div class="crew-card">
-                            <div class="avatar">${c.avatar}</div>
-                            <div class="name">${c.name}</div>
-                            <div class="rank">${c.rank}</div>
-                            <div class="role">${c.role}</div>
-                            <span class="status status-${c.status}">${c.status.toUpperCase()}</span>
+            const details = document.getElementById('deck-details');
+            details.innerHTML = shipData.decks.map(d => `
+                <div class="deck-card">
+                    <div class="deck-header">
+                        <div>
+                            <span class="deck-id">DECK ${d.id}</span>
+                            <span class="deck-name">${d.name}</span>
                         </div>
-                    `).join('')}
+                        <span class="deck-capacity">${d.capacity} crew</span>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <h4 style="color:#ffcc00;font-size:0.8em;margin-bottom:10px;">BAYS:</h4>
+                        ${d.bays.map(b => `<span class="system-tag">${b}</span>`).join(' ')}
+                    </div>
                 </div>
-                
-                <h4 style="color: #ffcc00; margin: 20px 0 10px;">ACTIVE SYSTEMS</h4>
-                <div class="systems-list">
-                    ${dept.systems.map(s => `<span class="system-tag online">✓ ${s}</span>`).join('')}
-                </div>
-                
-                <h4 style="color: #888; margin: 20px 0 10px; font-size: 0.9em;">DEPARTMENT STATS</h4>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <div><span style="color:#888">Crew:</span> <span style="color:#fff">${crew.length}</span></div>
-                    <div><span style="color:#888">Active:</span> <span style="color:#00ff88">${crew.filter(c=>c.status==='active').length}</span></div>
-                    <div><span style="color:#888">Standby:</span> <span style="color:#ffcc00">${crew.filter(c=>c.status==='standby').length}</span></div>
-                </div>
-            `;
-            
-            document.getElementById('modal').classList.add('active');
+            `).join('');
         }
         
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
+        // Render Crew
+        function renderCrew() {
+            const list = document.getElementById('crew-list');
+            list.innerHTML = shipData.crew.map(c => `
+                <div class="crew-card" onclick="selectCrew('${c.id}')">
+                    <div class="crew-header">
+                        <span class="crew-avatar">${c.avatar}</span>
+                        <div>
+                            <div class="crew-name">${c.name}</div>
+                            <div class="crew-rank">${c.rank}</div>
+                        </div>
+                    </div>
+                    <div class="crew-role">${c.role}</div>
+                    <div class="crew-dept">${c.dept.replace('_', ' ').toUpperCase()}</div>
+                    <div class="crew-cost">$${c.cost.toFixed(2)}/hr</div>
+                </div>
+            `).join('');
+            document.getElementById('crew-count').textContent = shipData.crew.length;
         }
         
-        // Keyboard
-        document.addEventListener('keydown', e => {
-            if (e.key === 'q' || e.key === 'Q') {
-                if (confirm('Exit SEED ONE Interface?')) {
-                    alert('★ EL F!N! ★\nHCIos Pirate Brothers Software');
-                }
-            }
-            if (e.key === 'Escape') closeModal();
-        });
+        function selectCrew(id) {
+            document.querySelectorAll('.crew-card').forEach(c => c.classList.remove('selected'));
+            event.target.closest('.crew-card').classList.add('selected');
+        }
+        
+        // Render Departments
+        function renderDepts() {
+            const list = document.getElementById('dept-list');
+            list.innerHTML = shipData.departments.map(d => `
+                <div class="dept-card">
+                    <div class="dept-header">
+                        <span class="dept-icon">${d.icon}</span>
+                        <div class="dept-info">
+                            <div class="dept-name">${d.name}</div>
+                            <div class="dept-head">Head: ${d.head.join(' & ')}</div>
+                        </div>
+                    </div>
+                    <div class="dept-systems">
+                        <h4>SYSTEMS</h4>
+                        ${d.systems.map(s => `<span class="system-tag">${s}</span>`).join(' ')}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Render Hangars
+        function renderHangars() {
+            const list = document.getElementById('hangar-list');
+            list.innerHTML = shipData.hangars.map(h => `
+                <div class="hangar-card">
+                    <div class="hangar-header">
+                        <span class="hangar-name">${h.name}</span>
+                        <span class="hangar-type">${h.type}</span>
+                    </div>
+                    <div class="hangar-capacity">Capacity: ${h.capacity}</div>
+                </div>
+            `).join('');
+        }
+        
+        // Render Systems
+        function renderSystems() {
+            const list = document.getElementById('system-list');
+            list.innerHTML = shipData.systems.map(s => `
+                <div class="system-card">
+                    <div class="system-icon">${s.icon}</div>
+                    <div class="system-name">${s.name}</div>
+                    <div class="system-status status-${s.status === 'locked' ? 'offline' : 'online'}">${s.status.toUpperCase()}</div>
+                </div>
+            `).join('');
+        }
+        
+        // Initialize
+        renderDecks();
+        renderCrew();
+        renderDepts();
+        renderHangars();
+        renderSystems();
     </script>
 </body>
 </html>

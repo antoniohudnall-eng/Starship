@@ -1,140 +1,242 @@
 {
+  "ship": {
+    "name": "SEED ONE",
+    "class": "Leviathan-Class Fleet Carrier",
+    "max_capacity": 131,
+    "crew_required": 87,
+    "current_crew": 59,
+    "decks": 15,
+    "sectors": 12,
+    "bays": 8,
+    "hangars": 8,
+    "status": "OPERATIONAL",
+    "captain": "QORA"
+  },
+  
+  "planets": {
+    "home": {
+      "name": "Island Moon",
+      "type": "Craters",
+      "system": "Alpha-1",
+      "resources": ["water", "minerals", "crystal"],
+      "map_size": "250x250"
+    },
+    "colonized": [
+      {
+        "name": "Isluna",
+        "type": "Craters",
+        "resources": ["ice", "water", "rare_earth"],
+        "map": "isluna.wz"
+      },
+      {
+        "name": "Marz",
+        "type": "Volcanic",
+        "resources": ["iron", "sulfur", "magma_energy"],
+        "map": "marz.wz"
+      },
+      {
+        "name": "Phobos",
+        "type": "Asteroid",
+        "resources": ["nickel", "cobalt", "platinum"],
+        "map": "phobos.wz"
+      },
+      {
+        "name": "Deimos",
+        "type": "Rogue Asteroid",
+        "resources": ["minerals", "fuel"],
+        "map": "deimos.wz"
+      },
+      {
+        "name": "Europa",
+        "type": "Icy Moon",
+        "resources": ["water_ice", "oxygen", "organic"],
+        "map": "europa.wz"
+      }
+    ],
+    "discovered": [
+      { "name": "Kepler-442b", "type": "Gaia", "resources": ["all"] },
+      { "name": "Proxima Centauri b", "type": "Rocky", "resources": ["iron", "silicon"] },
+      { "name": "TRAPPIST-1e", "type": "Temperate", "resources": ["water", "organics"] },
+      { "name": "Wolf 1061c", "type": "Rocky", "resources": ["minerals"] },
+      { "name": "Luyten b", "type": "Temperate", "resources": ["water"] }
+    ]
+  },
+  
+  "warzone_maps": {
+    "available": [
+      { "name": "Island Moon", "size": "250x250", "players": "10", "terrain": "Lunar" },
+      { "name": "Island Moon 8-player", "size": "250x250", "players": "8", "terrain": "Lunar" },
+      { "name": "Asteroid Field", "size": "256x256", "players": "12", "terrain": "Space" }
+    ],
+    "unlocked": ["Island Moon", "Island Moon 8-player"]
+  },
+  
+  "ship_structure": {
+    "decks": [
+      { "id": 1, "name": "Bridge Deck", "bays": ["Command Center", "Captain's Quarters", "Intel Hub"], "capacity": 12 },
+      { "id": 2, "name": "Officer's Deck", "bays": ["Department Heads", "Meeting Rooms", "VIP Quarters"], "capacity": 20 },
+      { "id": 3, "name": "Operations Deck", "bays": ["Mission Control", "Communications", "Navigation"], "capacity": 15 },
+      { "id": 4, "name": "Security Deck", "bays": ["Brig", "Armory", "Security HQ", "Weapons Control"], "capacity": 18 },
+      { "id": 5, "name": "Engineering Deck", "bays": ["Main Reactor", "Warp Core", "Power Grid", "Cooling"], "capacity": 16 },
+      { "id": 6, "name": "Medical Deck", "bays": ["Med Bay", "Surgery", "Psychology", "Dental", "Life Support"], "capacity": 14 },
+      { "id": 7, "name": "Research Deck", "bays": ["Lab 1", "Lab 2", "Xenobiology", "Quantum Lab", "Tech Vault"], "capacity": 18 },
+      { "id": 8, "name": "Production Deck", "bays": ["Assembly Line", "3D Print Bay", "Robotics Lab", "Fabrication"], "capacity": 20 },
+      { "id": 9, "name": "Mining Deck", "bays": ["Ore Processing", "Refinery", "Storage Bay A", "Storage Bay B"], "capacity": 16 },
+      { "id": 10, "name": "Cargo Deck", "bays": ["Cargo Hold Alpha", "Cargo Hold Beta", "Supply Depot", "Distribution"], "capacity": 14 },
+      { "id": 11, "name": "Docking Deck", "bays": ["Bay 1", "Bay 2", "Bay 3", "Bay 4", "Repair Bay"], "capacity": 22 },
+      { "id": 12, "name": "Flight Deck", "bays": ["Hangar A", "Hangar B", "Launch Tubes", "Recovery Bay"], "capacity": 20 },
+      { "id": 13, "name": "Crew Quarters A", "bays": ["Junior Crew", "Bunks 1-50"], "capacity": 50 },
+      { "id": 14, "name": "Crew Quarters B", "bays": ["Senior Crew", "Bunks 51-100"], "capacity": 50 },
+      { "id": 15, "name": "Crew Quarters C", "bays": ["Officers", "Bunks 101-131"], "capacity": 31 }
+    ],
+    "sectors": [
+      { "id": "alpha", "name": "Alpha Quadrant", "decks": [1, 2, 3], "purpose": "Command & Operations" },
+      { "id": "beta", "name": "Beta Quadrant", "decks": [4, 5], "purpose": "Security & Engineering" },
+      { "id": "gamma", "name": "Gamma Quadrant", "decks": [6, 7], "purpose": "Medical & Research" },
+      { "id": "delta", "name": "Delta Quadrant", "decks": [8, 9, 10], "purpose": "Production & Logistics" },
+      { "id": "epsilon", "name": "Epsilon Quadrant", "decks": [11, 12], "purpose": "Docking & Flight Ops" },
+      { "id": "residential", "name": "Residential Sector", "decks": [13, 14, 15], "purpose": "Crew Living Quarters" }
+    ],
+    "hangars": [
+      { "id": "A1", "name": "Hangar Alpha-1", "type": "Fighter Bay", "capacity": 20, "ships": [] },
+      { "id": "A2", "name": "Hangar Alpha-2", "type": "Fighter Bay", "capacity": 20, "ships": [] },
+      { "id": "B1", "name": "Hangar Beta-1", "type": "Transport Bay", "capacity": 10, "ships": [] },
+      { "id": "B2", "name": "Hangar Beta-2", "type": "Transport Bay", "capacity": 10, "ships": [] },
+      { "id": "C1", "name": "Hangar Cargo-1", "type": "Cargo Shuttle", "capacity": 15, "ships": [] },
+      { "id": "C2", "name": "Hangar Cargo-2", "type": "Cargo Shuttle", "capacity": 15, "ships": [] },
+      { "id": "D1", "name": "Hangar Dropship", "type": "Landing Craft", "capacity": 8, "ships": [] },
+      { "id": "D2", "name": "Hangar Escape", "type": "Escape Pods", "capacity": 40, "ships": [] }
+    ],
+    "docking_bays": [
+      { "id": 1, "name": "Docking Bay 1", "size": "Large", "type": "Capital Ships" },
+      { "id": 2, "name": "Docking Bay 2", "size": "Large", "type": "Capital Ships" },
+      { "id": 3, "name": "Docking Bay 3", "size": "Medium", "type": "Frigates" },
+      { "id": 4, "name": "Docking Bay 4", "size": "Medium", "type": "Frigates" },
+      { "id": 5, "name": "Docking Bay 5", "size": "Small", "type": "Corvettes" },
+      { "id": 6, "name": "Docking Bay 6", "size": "Small", "type": "Corvettes" },
+      { "id": 7, "name": "Docking Bay 7", "size": "Utility", "type": "Shuttles" },
+      { "id": 8, "name": "Docking Bay 8", "size": "Emergency", "type": "Rescue" }
+    ]
+  },
+  
   "departments": {
-    "nav": {
-      "name": "NAVIGATION & PROPULSION",
-      "icon": "🚀",
-      "color": "#00ff88",
-      "crew": ["nog", "r2d2"],
-      "systems": ["Pitch Control", "Yaw Control", "Solar Dome Engage", "Artificial Lights", "Navigation Array", "HyperDrive"]
+    "command": {
+      "name": "COMMAND & INTELLIGENCE",
+      "icon": "🛡️",
+      "deck": 1,
+      "head": ["qora", "morty"],
+      "systems": ["Fleet Command", "Strategic Planning", "Intelligence Ops", "AGI Systems", "Communications"]
     },
     "engineering": {
-      "name": "POWER PLANTS & ENGINEERING",
+      "name": "ENGINEERING & POWER",
       "icon": "⚡",
-      "color": "#ff4444",
-      "crew": ["stacktrace", "spindle", "taptap", "pipeline", "bugcatcher"],
-      "systems": ["Main Reactor", "Engines Status", "HyperDrive Engine", "Main Dome Control", "Power Grid", "Cooling Systems"]
+      "deck": 5,
+      "head": ["spindle", "stacktrace"],
+      "systems": ["Main Reactor", "Warp Core", "Power Grid", "Cooling Systems", "Quantum Drive"]
+    },
+    "navigation": {
+      "name": "NAVIGATION & FLIGHT",
+      "icon": "🚀",
+      "deck": 3,
+      "head": ["nog"],
+      "systems": ["Navigation Array", "Solar Dome", "Flight Control", "Warp Navigation", "Star Charts"]
     },
     "security": {
-      "name": "SECURITY | BRIG | WEAPONS",
+      "name": "SECURITY & WEAPONS",
       "icon": "🔒",
-      "color": "#ff0000",
-      "crew": ["cobra", "chelios", "sentinel"],
-      "systems": ["Weapons Lock", "Security Cameras", "Security Logs", "Brig Control", "Access Systems", "Threat Detection"]
+      "deck": 4,
+      "head": ["cobra", "chelios"],
+      "systems": ["Weapons Lock", "Security Cameras", "Brig", "Threat Detection", "EMP", "Combat Systems"]
     },
     "safety": {
-      "name": "SAFETY OFFICER S1",
-      "icon": "🦺",
-      "color": "#ffcc00",
-      "crew": ["feelix", "hume"],
-      "systems": ["Airlocks", "Damage Reports", "Emergency Stop", "Duty Roster", "Fire Suppression", "Evacuation"]
+      "name": "SAFETY & MEDICAL",
+      "icon": "🏥",
+      "deck": 6,
+      "head": ["feelix", "hume"],
+      "systems": ["Med Bay", "Emergency", "Airlocks", "Fire Suppression", "Psychology"]
     },
     "life_support": {
       "name": "LIFE SUPPORT & AQUAPONICS",
       "icon": "🌿",
-      "color": "#00ff00",
-      "crew": ["lilly", "fiber", "dusty"],
-      "systems": ["Bio Labs | Seeds", "Nursery", "Medical Bay | Labs", "Oxygen Generation", "Water Recycling", "Food Production"]
+      "deck": 6,
+      "head": ["lilly", "fiber"],
+      "systems": ["Oxygen Gen", "Water Recycling", "Bio Labs", "Food Production", "Hydroponics"]
     },
     "mining": {
-      "name": "MINING & MINERAL COLLECTION",
+      "name": "MINING & EXTRACTION",
       "icon": "⛏️",
-      "color": "#4488ff",
-      "crew": ["fiber", "harper"],
-      "systems": ["Inventory Stores", "Manufacturing", "Design & Testing", "Ore Scanner", "Refinery", "Storage Bays"]
+      "deck": 9,
+      "head": ["harper"],
+      "systems": ["Ore Scanner", "Drill Array", "Refinery", "Storage", "Asteroid Mining"]
     },
     "production": {
-      "name": "PRODUCTION | DESIGN | ROBOTICS",
+      "name": "PRODUCTION & ROBOTICS",
       "icon": "🤖",
-      "color": "#ffffff",
-      "crew": ["cobra", "c3po", "r2d2", "r2-c4", "velum", "harper"],
-      "systems": ["Operational Systems", "Systems Design", "Robot Report Logs", "Assembly Line", "3D Printer", "Quality Control"]
-    },
-    "docking": {
-      "name": "DOCKING BAYS & LAUNCHING",
-      "icon": "🛸",
-      "color": "#ff00ff",
-      "crew": ["nog", "r2d2"],
-      "systems": ["Escape Pods", "Docking Schedule", "Crew Manifest", "Bay 1 Control", "Bay 2 Control", "Launch Sequence"]
-    },
-    "command": {
-      "name": "COMMAND & INTELLIGENCE",
-      "icon": "🛡️",
-      "color": "#ffcc00",
-      "crew": ["qora", "morty", "aurora", "jordan", "patricia", "ledger9"],
-      "systems": ["Fleet Command", "Strategic Planning", "Intelligence", "Financial Planning", "Operations", "AGI Systems"]
+      "deck": 8,
+      "head": ["cobra", "c3po"],
+      "systems": ["Assembly Line", "3D Printer", "Robotics Lab", "Quality Control", "Nanotech"]
     },
     "sales": {
-      "name": "SALES & BUSINESS DEVELOPMENT",
+      "name": "SALES & BUSINESS",
       "icon": "📞",
-      "color": "#ff8844",
-      "crew": ["pulp", "jane", "clerk", "greet", "velvet", "concierge", "judy"],
-      "systems": ["Lead Management", "Pipeline", "Forecasting", "Reporting", "Client Relations", "Cold Outreach"]
+      "deck": 2,
+      "head": ["pulp", "jane"],
+      "systems": ["CRM", "Pipeline", "Reporting", "Client Relations", "Contracts"]
+    },
+    "marketing": {
+      "name": "MARKETING & CREATIVE",
+      "icon": "📣",
+      "deck": 2,
+      "head": ["velum"],
+      "systems": ["Branding", "Content", "Social Media", "Ads", "Design"]
+    },
+    "docking": {
+      "name": "DOCKING & LAUNCH",
+      "icon": "🛸",
+      "deck": 11,
+      "head": ["nog", "r2d2"],
+      "systems": ["Docking Control", "Launch Sequence", "Bay 1-8", "Repair Bay", "Cargo Hold"]
     },
     "crypto": {
-      "name": "CRYPTO & FINANCE",
+      "name": "CRYPTO & TRADING",
       "icon": "💎",
-      "color": "#00ccff",
-      "crew": ["cryptonio", "dusty"],
-      "systems": ["Portfolio Management", "Trading Bot", "Wallet Operations", "DeFi", "NFT", "Exchange API"]
+      "deck": 2,
+      "head": ["cryptonio", "dusty"],
+      "systems": ["Portfolio Mgmt", "Trading Bot", "Wallet Ops", "DeFi", "Exchange API"]
+    },
+    "research": {
+      "name": "RESEARCH & DEVELOPMENT",
+      "icon": "🔬",
+      "deck": 7,
+      "head": ["aurora"],
+      "systems": ["Research Lab", "Tech Tree", "Artifacts", "Xenobiology", "Quantum Lab"]
+    },
+    "minecraft_ops": {
+      "name": "MINECRAFT OPERATIONS",
+      "icon": "🎮",
+      "deck": 8,
+      "head": ["mylzeron"],
+      "systems": ["Server Ops", "Mineflayer Bots", "World Gen", "Mod Development"]
+    },
+    "logistics": {
+      "name": "LOGISTICS & TRANSPORT",
+      "icon": "🚚",
+      "deck": 10,
+      "head": ["fiber"],
+      "systems": ["Transport", "Supply Chain", "Fulfillment", "Fleet Dispatch"]
     }
   },
   
-  "crew": {
-    "qora": { "name": "QORA", "rank": "CAPTAIN", "role": "Fleet Commander", "avatar": "🛡️", "dept": "command", "status": "active" },
-    "morty": { "name": "MORTY", "rank": "GENERAL", "role": "Intelligence Officer", "avatar": "🔮", "dept": "command", "status": "active" },
-    "aurora": { "name": "AURORA", "rank": "AGI OFFICER", "role": "AGI Systems", "avatar": "🌟", "dept": "command", "status": "active" },
-    "patricia": { "name": "PATRICIA", "rank": "EXEC OFFICER", "role": "Process Excellence", "avatar": "⚙️", "dept": "command", "status": "active" },
-    "jordan": { "name": "JORDAN", "rank": "EXEC ASST", "role": "Executive Support", "avatar": "📋", "dept": "command", "status": "active" },
-    "ledger9": { "name": "LEDGER-9", "rank": "CFO", "role": "Finance", "avatar": "💹", "dept": "command", "status": "active" },
-    
-    "spindle": { "name": "SPINDLE", "rank": "CTO", "role": "Tech Architecture", "avatar": "⚙️", "dept": "engineering", "status": "active" },
-    "stacktrace": { "name": "STACKTRACE", "rank": "CHIEF ENG", "role": "Software Architect", "avatar": "🏗️", "dept": "engineering", "status": "active" },
-    "taptap": { "name": "TAPTAP", "rank": "LEAD DEV", "role": "Mobile Developer", "avatar": "📱", "dept": "engineering", "status": "active" },
-    "pipeline": { "name": "PIPELINE", "rank": "ENGINEER", "role": "Backend Engineer", "avatar": "🔧", "dept": "engineering", "status": "active" },
-    "bugcatcher": { "name": "BUGCATCHER", "rank": "QA LEAD", "role": "Testing", "avatar": "🐛", "dept": "engineering", "status": "active" },
-    
-    "cobra": { "name": "COBRA", "rank": "SECURITY CHIEF", "role": "Physical Security", "avatar": "🐍", "dept": "security", "status": "active" },
-    "chelios": { "name": "CHELIOS", "rank": "OFFICER", "role": "Cyber Defense", "avatar": "🛡️", "dept": "security", "status": "active" },
-    "sentinel": { "name": "SENTINEL", "rank": "CSO", "role": "Defense", "avatar": "🔒", "dept": "security", "status": "standby" },
-    
-    "nog": { "name": "NOG", "rank": "NAVIGATOR", "role": "Flight Commander", "avatar": "🚀", "dept": "nav", "status": "active" },
-    "r2d2": { "name": "R2D2", "rank": "ASTRO MECH", "role": "Systems Ops", "avatar": "🛸", "dept": "nav", "status": "active" },
-    "r2-c4": { "name": "R2-C4", "rank": "ASTRO MECH", "role": "Maintenance", "avatar": "🔧", "dept": "nav", "status": "active" },
-    
-    "feelix": { "name": "FEELIX", "rank": "HR DIR", "role": "Human Resources", "avatar": "👥", "dept": "safety", "status": "active" },
-    "hume": { "name": "HUME", "rank": "REG MGR", "role": "Regional Ops", "avatar": "🌐", "dept": "safety", "status": "active" },
-    
-    "lilly": { "name": "LILLY", "rank": "BOTANIST", "role": "Reading Program", "avatar": "📚", "dept": "life_support", "status": "active" },
-    "fiber": { "name": "FIBER", "rank": "SUPPLY HEAD", "role": "Supply Chain", "avatar": "📦", "dept": "life_support", "status": "active" },
-    "dusty": { "name": "DUSTY", "rank": "CRYPTO OPS", "role": "Bridge Guardian", "avatar": "💰", "dept": "life_support", "status": "active" },
-    
-    "harper": { "name": "HARPER", "rank": "CREATIVE", "role": "Content Lead", "avatar": "✍️", "dept": "mining", "status": "active" },
-    
-    "c3po": { "name": "C3PO", "rank": "PROTOCOL", "role": "Translation", "avatar": "🤖", "dept": "production", "status": "active" },
-    "velum": { "name": "VELUM", "rank": "BRAND OFF", "role": "Branding", "avatar": "🎨", "dept": "production", "status": "active" },
-    
-    "pulp": { "name": "PULP", "rank": "SALES DIR", "role": "Head of Sales", "avatar": "📞", "dept": "sales", "status": "active" },
-    "jane": { "name": "JANE", "rank": "SENIOR REP", "role": "Sales Rep", "avatar": "📈", "dept": "sales", "status": "active" },
-    "clerk": { "name": "CLERK", "rank": "REP", "role": "Sales Rep", "avatar": "📝", "dept": "sales", "status": "active" },
-    "greet": { "name": "GREET", "rank": "AGENT", "role": "Greeting", "avatar": "👋", "dept": "sales", "status": "active" },
-    "velvet": { "name": "VELVET", "rank": "AGENT", "role": "Sales", "avatar": "🎩", "dept": "sales", "status": "active" },
-    "concierge": { "name": "CONCIERGE", "rank": "AGENT", "role": "VIP Support", "avatar": "🎩", "dept": "sales", "status": "active" },
-    "judy": { "name": "JUDY", "rank": "SUPPORT", "role": "Sales Support", "avatar": "📊", "dept": "sales", "status": "active" },
-    
-    "cryptonio": { "name": "CRYPTONIO", "rank": "TREASURER", "role": "Portfolio Manager", "avatar": "💎", "dept": "crypto", "status": "active" },
-    
-    "miles": { "name": "MILES", "rank": "OPS", "role": "Server Ops", "avatar": "🖥️", "dept": "engineering", "status": "active" },
-    "executive": { "name": "EXECUTIVE", "rank": "EXEC", "role": "Executive", "avatar": "👔", "dept": "command", "status": "active" }
-  },
-  
   "ship_systems": {
-    "hull": { "integrity": 100, "max": 100 },
-    "shields": { "strength": 85, "max": 100 },
-    "engines": { "power": 92, "max": 100 },
-    "weapons": { "power": 78, "max": 100 },
-    "sensors": { "range": 95, "max": 100 },
-    "life_support": { "integrity": 100, "max": 100 },
-    "hyperdrive": { "status": "ready" },
-    "solar_dome": { "status": "engaged" }
+    "hull": { "integrity": 100, "max": 100, "type": "Titanium-Armored" },
+    "shields": { "strength": 100, "max": 100, "type": "Quantum Shield" },
+    "engines": { "power": 100, "max": 100, "type": "Class-2 Warp" },
+    "weapons": { "power": 100, "max": 100, "slots": 24, "types": ["Pulse Lasers", "Missiles", "EMP"] },
+    "sensors": { "range": 100, "max": 100, "type": "Long Range Array" },
+    "life_support": { "integrity": 100, "max": 100, "capacity": 200 },
+    "hyperdrive": { "status": "ready", "class": "Class 2" },
+    "warp_core": { "status": "optimal" },
+    "quantum_drive": { "status": "available" },
+    "cloak": { "status": "locked" }
   }
 }
