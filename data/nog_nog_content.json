@@ -1,0 +1,62 @@
+{
+  "nog_nog": {
+    "name": "NOG NOG",
+    "tagline": "Space Exploration Game",
+    "type": "Browser-based space exploration",
+    "platform": "Web (HTML5 Canvas + Three.js)",
+    "status": "Active"
+  },
+  
+  "game_features": {
+    "solar_systems": {
+      "name": "100x100x100 Voxel Grid",
+      "description": "Infinite procedurally generated solar systems"
+    },
+    "ships": [
+      { "id": "explorer", "name": "Explorer", "speed": 5, "shields": 3, "cargo": 10 },
+      { "id": "hauler", "name": "Hauler", "speed": 2, "shields": 5, "cargo": 50 },
+      { "id": "fighter", "name": "Fighter", "speed": 8, "shields": 2, "cargo": 2 },
+      { "id": "cruiser", "name": "Cruiser", "speed": 4, "shields": 8, "cargo": 20 },
+      { "id": "scout", "name": "Scout", "speed": 10, "shields": 1, "cargo": 5 }
+    ],
+    "physics": {
+      "gravity": true,
+      "collision": true,
+      "landing": true,
+      "slingshot": true
+    }
+  },
+  
+  "crew_system": {
+    "name": "N'og nog Crew Expansion",
+    "description": "Persistent crew with brain integration",
+    "max_crew": 10,
+    "roles": ["PILOT", "ENGINEER", "SCIENTIST", "COMBAT", "MEDIC", "TRADER"],
+    "levels": ["Rookie", "Cadet", "Officer", "Veteran", "Elite", "Legend"],
+    "initial_crew": [
+      { "name": "Vex", "role": "PILOT" },
+      { "name": "Nyx", "role": "ENGINEER" },
+      { "name": "Jax", "role": "SCIENTIST" },
+      { "name": "Luna", "role": "COMBAT" },
+      { "name": "Aria", "role": "MEDIC" }
+    ]
+  },
+  
+  "integrations": {
+    "roblox": {
+      "type": "WebSocket Bridge",
+      "port": 8081,
+      "status": "Available"
+    },
+    "minecraft": {
+      "type": "RCON + Mineflayer",
+      "bots": ["Forge", "Patricia", "Chelios", "Stella"],
+      "status": "Available"
+    },
+    "brain": {
+      "type": "Socket Connection",
+      "socket": "/tmp/aos_brain.sock",
+      "status": "Available"
+    }
+  }
+}
